@@ -1,3 +1,16 @@
+// Leetcode 1857 – Largest Color Value in a Directed Graph, we need to
+// 🧠 Problem Summary >  A directed graph with n nodes (0 to n−1)
+// A string colors where colors[i] = color of node i
+// An edge list edges[i] = [u, v] means a directed edge from u → v
+// 🎯 Goal > Find the maximum frequency of a single color on any valid path . If the graph contains a cycle, return -1
+// ✅ Strategy:
+// This is a topological sort + dynamic programming on a DAG (Directed Acyclic Graph) problem.
+// Key Steps > Build the graph (adjacency list + in-degree array) .Topologically sort using Kahn’s Algorithm (BFS-based)
+// Track color counts using a 2D DP table > dp[node][c] = max count of color c along any path ending at node
+// If a cycle is detected (i.e., not all nodes are visited), return -1
+// Otherwise, return the maximum value in dp
+
+
 /**
  * @param {string} colors
  * @param {number[][]} edges
@@ -47,3 +60,9 @@ var largestPathValue = function(colors, edges) {
     // If we didn’t visit all nodes → cycle
     return visited === n ? maxColor : -1;
 };
+
+// ⏱️ Time & Space Complexity:
+// Time: O(n + m + 26n) → Efficient for n, m ≤ 1e5
+// Space: O(n + m + 26n)
+
+
